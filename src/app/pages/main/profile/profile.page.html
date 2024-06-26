@@ -9,8 +9,8 @@
     <ion-icon name="camera-outline"></ion-icon>
   </ion-button>
 
-  <h2>{{user().name}}</h2>
-  <div>Administrador</div>
+  <h1>{{user().name}}</h1>
+  <h3><strong> {{ (user().idRol == '1') ? 'Administrador' : 'Cliente' }}</strong></h3>
 
   <ion-item button detail>
     <ion-icon color="primary" slot="start" name="person-outline"></ion-icon>

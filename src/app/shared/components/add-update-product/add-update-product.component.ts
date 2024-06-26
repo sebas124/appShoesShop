@@ -19,7 +19,8 @@ export class AddUpdateProductComponent implements OnInit {
     image: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     price: new FormControl(null, [Validators.required, Validators.min(0)]),
-    soldUnits: new FormControl(null, [Validators.required, Validators.min(0)])
+    soldUnits: new FormControl(null, [Validators.required, Validators.min(0)]),
+    quantity: new FormControl(1)
   });
 
   firebaseSvc = inject(FirebaseService);
@@ -83,7 +84,6 @@ export class AddUpdateProductComponent implements OnInit {
 
 
     }).catch(error => {
-      console.log(error);
 
       this.utilsSvc.presentToast({
         message: error.message,
@@ -130,7 +130,6 @@ export class AddUpdateProductComponent implements OnInit {
 
 
     }).catch(error => {
-      console.log(error);
 
       this.utilsSvc.presentToast({
         message: error.message,

@@ -16,6 +16,11 @@ export class SignUpPage implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    lastName: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    phone: new FormControl('', [Validators.required, Validators.minLength(7)]),
+    address: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    idRol: new FormControl('2'),
+    noCedula: new FormControl('', [Validators.required, Validators.minLength(5)]),
   });
 
   firebaseSvc = inject(FirebaseService);
@@ -30,17 +35,16 @@ export class SignUpPage implements OnInit {
       const loading = await this.utilsSvc.loading();
       await loading.present();
 
-      this.firebaseSvc.singUp(this.form.value as User).then( async res => {
-        console.log(res);
+      this.firebaseSvc.singUp(this.form.value as User).then(async res => {
         await this.firebaseSvc.updateUser(this.form.value.name);
 
         let uid = res.user.uid;
+        let idRol = this.form.value.idRol;
         this.form.controls.uid.setValue(uid);
 
-        this.setUserInfo(uid);
+        this.setUserInfo(uid, idRol);
 
       }).catch(error => {
-        console.log(error);
 
         this.utilsSvc.presentToast({
           message: error.message,
@@ -56,7 +60,7 @@ export class SignUpPage implements OnInit {
     }
   }
 
-  async setUserInfo(uid: string) {
+  async setUserInfo(uid: string, idRol?: string) {
     if (this.form.valid) {
 
       const loading = await this.utilsSvc.loading();
@@ -65,14 +69,17 @@ export class SignUpPage implements OnInit {
       let path = `user/${uid}`;
       delete this.form.value.password;
 
-      this.firebaseSvc.setDocument(path, this.form.value).then( async res => {
+      this.firebaseSvc.setDocument(path, this.form.value).then(async res => {
 
         this.utilsSvc.saveInLocalStorage('user', this.form.value);
-        this.utilsSvc.routerLink('/main/home');
+        if (idRol == '1') {
+          this.utilsSvc.routerLink('/main/home');
+        } else {
+          this.utilsSvc.routerLink('/main/product-list');
+        }
         this.form.reset();
 
       }).catch(error => {
-        console.log(error);
 
         this.utilsSvc.presentToast({
           message: error.message,

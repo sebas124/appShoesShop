@@ -33,7 +33,6 @@ export class AuthPage implements OnInit {
         this.getUserInfo(res.user.uid);
         
       }).catch(error => {
-        console.log(error);
 
         this.utilsSvc.presentToast({
           message: error.message,
@@ -61,7 +60,16 @@ export class AuthPage implements OnInit {
       this.firebaseSvc.getDocument(path).then( (user: User) => {
 
         this.utilsSvc.saveInLocalStorage('user', user);
-        this.utilsSvc.routerLink('/main/home');
+
+        // Si el rol es Admin, guiarlo a la página de Admin productos
+        if(user['idRol'] == '1'){
+          this.utilsSvc.routerLink('/main/home');
+
+          // Si el rol es cliente, guiarlo a la página de Carrito de productos
+        } else {
+          this.utilsSvc.routerLink('/main/product-list');
+        }
+
         this.form.reset();
 
         this.utilsSvc.presentToast({
@@ -73,7 +81,6 @@ export class AuthPage implements OnInit {
         })
 
       }).catch(error => {
-        console.log(error);
 
         this.utilsSvc.presentToast({
           message: error.message,

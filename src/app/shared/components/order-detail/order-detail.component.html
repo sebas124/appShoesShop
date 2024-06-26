@@ -1,0 +1,67 @@
+<app-header [isModal]="true" title="Detalles del Pedido"></app-header>
+<ion-content>
+
+  <!-- ====================== Pedidos ==================================-->
+  <div class="order-card">
+    <p><strong>Cliente:</strong><span> {{ this.userOrder?.name }} {{ this.userOrder?.lastName }} </span></p>
+    <p><strong>No Contacto:</strong><span> {{ this.userOrder?.phone }} </span></p>
+    <p><strong>Precio Total:</strong><span> {{ this.formOrder.controls.priceTotal.value | currency: 'USD' }}</span></p>
+    <p><strong>Estado del Pedido:</strong>
+      <span *ngIf="this.formOrder.controls.status.value == '1'" class="order-status1"> En Gestión</span>
+      <span *ngIf="this.formOrder.controls.status.value == '2'" class="order-status2"> Cancelado</span>
+      <span *ngIf="this.formOrder.controls.status.value == '3'" class="order-status3"> Finalizado</span>
+    </p>
+    <ion-chip size="small" color="tertiary" mode="ios" outline="true">
+      <ion-icon name="pencil-outline"></ion-icon>
+      <ion-label>Cambiar estado</ion-label>
+    </ion-chip>
+    <h4>Productos</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Precio Unitario</th>
+          <th>Precio Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="this.formOrder.controls.idProduct1.value.length">
+          <td>{{ this.productOrder1?.name }}</td>
+          <td>{{ this.formOrder.controls.quantity1.value }}</td>
+          <td>{{ this.formOrder.controls.priceUni1.value | currency : 'USD' }}</td>
+          <td>{{ getTotalOrder(this.formOrder.controls.priceUni1.value, this.formOrder.controls.quantity1.value) |
+            currency : 'USD' }}</td>
+        </tr>
+        <tr *ngIf="this.formOrder.controls.idProduct2.value.length">
+          <td>{{ this.productOrder2?.name }}</td>
+          <td>{{ this.formOrder.controls.quantity2.value }}</td>
+          <td>{{ this.formOrder.controls.priceUni2.value | currency : 'USD' }}</td>
+          <td>{{ getTotalOrder(this.formOrder.controls.priceUni2.value, this.formOrder.controls.quantity2.value) |
+            currency : 'USD' }}</td>
+        </tr>
+        <tr *ngIf="this.formOrder.controls.idProduct3.value.length">
+          <td>{{ this.productOrder3?.name }}</td>
+          <td>{{ this.formOrder.controls.quantity3.value }}</td>
+          <td>{{ this.formOrder.controls.priceUni3.value | currency : 'USD' }}</td>
+          <td>{{ getTotalOrder(this.formOrder.controls.priceUni3.value, this.formOrder.controls.quantity3.value) |
+            currency : 'USD' }}</td>
+        </tr>
+        <tr *ngIf="this.formOrder.controls.idProduct4.value.length">
+          <td>{{ this.productOrder4?.name }}</td>
+          <td>{{ this.formOrder.controls.quantity4.value }}</td>
+          <td>{{ this.formOrder.controls.priceUni4.value | currency : 'USD' }}</td>
+          <td>{{ getTotalOrder(this.formOrder.controls.priceUni4.value, this.formOrder.controls.quantity4.value) |
+            currency : 'USD' }}</td>
+        </tr>
+        <tr *ngIf="this.formOrder.controls.idProduct5.value.length">
+          <td>{{ this.productOrder5?.name }}</td>
+          <td>{{ this.formOrder.controls.quantity5.value }}</td>
+          <td>{{ this.formOrder.controls.priceUni5.value | currency : 'USD' }}</td>
+          <td>{{ getTotalOrder(this.formOrder.controls.priceUni5.value, this.formOrder.controls.quantity5.value) |
+            currency : 'USD' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ion-content>

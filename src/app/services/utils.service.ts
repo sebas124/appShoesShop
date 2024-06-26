@@ -15,13 +15,14 @@ export class UtilsService {
   aletCtrl = inject(AlertController);
 
 
+  // =============== Capturar imagen ================
   async takePicture(promptLabelHeader: string) {
     return await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
       resultType: CameraResultType.DataUrl,
       source: CameraSource.Prompt,
-      promptLabelHeader,  
+      promptLabelHeader,
       promptLabelPhoto: 'Selecciona una imagen',
       promptLabelPicture: 'Toma una foto'
     });

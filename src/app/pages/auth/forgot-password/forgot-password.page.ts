@@ -41,7 +41,6 @@ export class ForgotPasswordPage implements OnInit {
         this.form.reset();
         
       }).catch(error => {
-        console.log(error);
 
         this.utilsSvc.presentToast({
           message: error.message,

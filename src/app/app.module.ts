@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 // ======== FIREBASE ==============
 import { AngularFireModule } from '@angular/fire/compat';
 import { initializeApp } from 'firebase/app';
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],

@@ -9,7 +9,7 @@
     <h4>{{user()?.name }}</h4>
 
     <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
-      <ion-item [ngClass]="{'active' : currentPath === p.url }" [routerLink]="p.url" routerDirection="root" detail>
+      <ion-item *ngIf="user()?.idRol == p.describe || p.describe == '0'" [ngClass]="{'active' : currentPath === p.url }" [routerLink]="p.url" routerDirection="root" detail>
         <ion-icon slot="start" [name]="p.icon"></ion-icon>
         <ion-label>{{ p.title }}</ion-label>
       </ion-item>

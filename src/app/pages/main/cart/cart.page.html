@@ -1,0 +1,26 @@
+<app-header [showMenu]="true" title="Carrito De Compras"></app-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let product of cart">
+      <ion-avatar slot="start">
+        <img [src]="product.image"/>
+      </ion-avatar>
+      <ion-label>
+        <div class="name">{{product.name}}</div>
+        <div class="data">
+          <strong>Precio:</strong> {{ product.price | currency: 'USD'}} x {{ product.quantity }}<br>
+        </div>
+      </ion-label>
+      <ion-button color="danger" (click)="removeProduct(product.id)">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+  <ion-item>
+    <ion-label>
+      <h2>Total: \ {{ getTotal() | currency: 'USD'}}</h2>
+    </ion-label>
+  </ion-item>
+  <ion-button size="small" start="end" fill="outline" mode="ios" class="submitCart" type="submit" color="success" (click)="addOrder()">Realizar Pedido</ion-button>
+  <ion-button size="small" fill="outline" mode="ios" color="danger" class="submitCart" (click)="clearCart()">Limpiar Carrito</ion-button>
+</ion-content>

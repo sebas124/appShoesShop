@@ -1,0 +1,47 @@
+<app-header [showMenu]="true" title="Pedidos"></app-header>
+
+<ion-content>
+  <!-- ====================== Pedidos ==================================-->
+  <ion-list *ngIf="!loading">
+    <ion-list class="product-item" *ngFor="let ord of order;let indice=index">
+      <ion-item>
+        <ion-label>
+          <div> <strong> Pedido #{{indice + 1}} </strong></div>
+          <div class="data">
+            <strong>Cliente:</strong> {{ ord.userOrder }} <br>
+          </div>
+          <div class="data">
+            <strong>Precio Total:</strong> {{ ord.priceTotal | currency: 'USD'}} <br>
+          </div>
+        </ion-label>
+        <ion-button shape="round" color="warning" (click)="showDetailOrder(ord)">
+          <ion-icon slot="start" name="eye-outline"></ion-icon>
+          Ver Detalles
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-list>
+
+  <!-- =======================  Loading ======================= -->
+  <ion-list *ngIf="loading">
+    <ion-item class="product-item" *ngFor="let p of [1,1,1,1,1,1,1,1,1,1]">
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label>
+        <div><ion-skeleton-text animated style="width: 50%"></ion-skeleton-text></div>
+        <div><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></div>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- ================= No hay productos disponibles ===============-->
+  <div *ngIf="!loading && !order.length" class="empty">
+    <ion-icon name="bag-handle-outline"></ion-icon>
+    <h3>No tienes pedidos realizados</h3>
+  </div>
+
+
+</ion-content>
+
+

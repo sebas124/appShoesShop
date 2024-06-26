@@ -45,7 +45,8 @@ export class HomePage implements OnInit {
 
   // ============ Obtener Productos ==============
   getProducts() {
-    let path = `user/${this.user().uid}/products`
+    //let path = `user/${this.user().uid}/products`
+    let path = `user/caGOmbCPEcbdBSBbjhKG8FgfHDO2/products`
 
     this.loading = true;
 
@@ -56,7 +57,6 @@ export class HomePage implements OnInit {
 
     let sub = this.firebaseSvc.getCollectionData(path, query).subscribe({
       next: (res: any) => {
-        console.log(res)
         this.products = res;
 
         this.loading = false;
@@ -121,7 +121,6 @@ export class HomePage implements OnInit {
 
 
     }).catch(error => {
-      console.log(error);
 
       this.utilsSvc.presentToast({
         message: error.message,

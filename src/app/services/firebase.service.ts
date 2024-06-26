@@ -7,6 +7,7 @@ import { getFirestore, setDoc, doc, getDoc, addDoc, collection, collectionData, 
 import { UtilsService } from './utils.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { getStorage, uploadString, ref, getDownloadURL, deleteObject } from 'firebase/storage'
+import { Order } from '../models/order.model';
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +60,12 @@ export class FirebaseService {
     return collectionData(query(ref, ...collectionQuery), { idField: 'id' });
   }
 
+  // ========== Obtener documentos de una colección (Consultar productos) ==================
+  getCollectionDataUser(path: string,  collectionQuery?: any) {
+    return collection(getFirestore(), path);
+    //return collectionData(query(ref, ...collectionQuery), { idField: 'id' });
+  }
+  
   // ========== Setear Documento ==================
   setDocument(path: string, data: any) {
     return setDoc(doc(getFirestore(), path), data)

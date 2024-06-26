@@ -19,7 +19,63 @@ label="Nombre"
 <div class="validators" *ngIf="form.controls.name.errors &&  form.controls.name.touched"> 
   <div *ngIf="form.controls.name.errors?.['required']">El nombre es requerido</div>
   <div *ngIf="form.controls.name.errors?.['minlenght']">El nombre debe tener al menos 3 caracteres</div>
-  </div>
+</div>
+
+<!-- ======================= Apellidos ================== -->
+<app-custom-input 
+autocomplete="lastName"
+icon="person-outline"
+[control]="form.controls.lastName"
+type="text"
+label="Apellidos"
+></app-custom-input>  
+
+<div class="validators" *ngIf="form.controls.lastName.errors &&  form.controls.lastName.touched"> 
+  <div *ngIf="form.controls.lastName.errors?.['required']">El apellido es requerido</div>
+  <div *ngIf="form.controls.lastName.errors?.['minlenght']">El nombre debe tener al menos 3 caracteres</div>
+</div>
+
+<!-- ======================= Número de cedula ================== -->
+<app-custom-input 
+autocomplete="noCedula"
+icon="id-card-outline"
+[control]="form.controls.noCedula"
+type="number"
+label="Número de cédula"
+></app-custom-input>  
+
+<div class="validators" *ngIf="form.controls.noCedula.errors &&  form.controls.noCedula.touched"> 
+  <div *ngIf="form.controls.noCedula.errors?.['required']">El Número de cédula es requerido</div>
+  <div *ngIf="form.controls.noCedula.errors?.['minlenght']">El Número de cédula debe tener al menos 5 caracteres</div>
+</div>
+
+<!-- ======================= Número Celular ================== -->
+<app-custom-input 
+autocomplete="phone"
+icon="call-outline"
+[control]="form.controls.phone"
+type="number"
+label="Número de contacto"
+></app-custom-input>  
+
+<div class="validators" *ngIf="form.controls.phone.errors &&  form.controls.phone.touched"> 
+  <div *ngIf="form.controls.phone.errors?.['required']">El Número de contacto es requerido</div>
+  <div *ngIf="form.controls.phone.errors?.['minlenght']">El Número de contacto debe tener al menos 7 caracteres</div>
+</div>
+
+<!-- ======================= Dirección ================== -->
+<app-custom-input 
+autocomplete="address"
+icon="compass-outline"
+[control]="form.controls.address"
+type="text"
+label="Dirección"
+></app-custom-input>  
+
+<div class="validators" *ngIf="form.controls.address.errors &&  form.controls.address.touched"> 
+  <div *ngIf="form.controls.address.errors?.['required']">La dirección es requerida</div>
+  <div *ngIf="form.controls.address.errors?.['minlenght']">La dirección debe tener al menos 10 caracteres</div>
+</div>
   
   <!-- ======================= Correo ================== -->
   <app-custom-input 
@@ -33,7 +89,7 @@ label="Nombre"
   <div class="validators" *ngIf="form.controls.email.errors &&  form.controls.email.touched"> 
     <div *ngIf="form.controls.email.errors?.['required']">El correo es requerido</div>
     <div *ngIf="form.controls.email.errors?.['email']">Ingrese un correo valido</div>
-    </div>
+  </div>
     
     <!-- ======================= Contraseña ================== -->
     <app-custom-input

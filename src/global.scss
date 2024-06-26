@@ -39,6 +39,10 @@ ion-button {
     margin-top: 40px;
 }
 
+.submitCart {
+    margin-top: 20px;
+}
+
 .empty {
     text-align: center;
     padding: 60px;
@@ -108,6 +112,13 @@ ion-button {
             font-weight: 500;
         }
     }
+    .dataOrder {
+        font-size: 15px;
+
+        strong {
+            font-weight: 300;
+        }
+    }
 
     .option-btn {
         font-size: 27px;
@@ -126,6 +137,16 @@ ion-button {
     }
 
     .add-update-modal {
+        --height: 680px;
+    }
+}
+
+@media (min-width: 769px) {
+    .auth-form {
+        width: 500px;
+    }
+
+    .order-modal {
         --height: 680px;
     }
 }

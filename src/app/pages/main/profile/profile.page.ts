@@ -50,7 +50,6 @@ export class ProfilePage implements OnInit {
 
 
     }).catch(error => {
-      console.log(error);
 
       this.utilsSvc.presentToast({
         message: error.message,
